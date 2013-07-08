@@ -6,55 +6,10 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import qreport.QuarterTable;
-import qreport.elements.QuarterRow;
 import qreport.elements.Row;
 import qreport.elements.Table;
 
-public class HTMLExporter {
-   
-//    private void exportToHTML() {
-//
-//	// phrase.replace(' ', '_');
-//
-//	StringBuilder output = new StringBuilder();
-//	output.append("<html><body>\n");
-//	output.append("<table border=\"1\"\n");
-//	for (QuarterRow qRr : listOfEntries) {
-//	    r.printRow();
-//	}
-//	// <tr>
-//	// <th>Month</th>
-//	// <th>Savings</th>
-//	// </tr>
-//	// <tr>
-//	// <td>January</td>
-//	// <td>$100</td>
-//	// </tr>
-//	// <tr>
-//	// <td>February</td>
-//	// <td>$80</td>
-//	// </tr>
-//	output.append("</table></html></body>\n");
-//	System.out.println(output);
-//
-//	try {
-//	    FileOutputStream fos = new FileOutputStream("test.txt");
-//	    Writer out = new OutputStreamWriter(fos, "UTF8");
-//	    out.write(output.toString());
-//	    out.close();
-//
-//	} catch (FileNotFoundException e) {
-//	    e.printStackTrace();
-//	} catch (UnsupportedEncodingException e) {
-//	    e.printStackTrace();
-//	} catch (IOException e) {
-//	    e.printStackTrace();
-//	}
-//    }
-    
+public class HTMLExporter implements IExporter {
     
     Table exportedTable;
     String filename;
@@ -73,26 +28,16 @@ public class HTMLExporter {
      * This class save a string to a file.
      * 
      */
+    @Override
     public void writeFile(){
-	try {
-	    FileOutputStream fos = new FileOutputStream(filename);
-	    OutputStreamWriter out = new OutputStreamWriter(fos, "UTF8");
-	    out.write(output.toString());
-	    out.close();
-
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	} catch (UnsupportedEncodingException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
+	new StringToFile(output, filename);
     }
     
     
     /**
      * This class generate a string that will later be saved to a file.
      */
+    @Override
     public void generateFile(){
 	output = new StringBuilder();
 	

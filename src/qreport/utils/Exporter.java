@@ -36,7 +36,6 @@ public class Exporter {
 
     public void generate() {
 	checkName();
-	
 	//  java 1.7 allows cases with strings
 	switch (type) {
 	case "HTML":

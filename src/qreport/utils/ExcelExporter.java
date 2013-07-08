@@ -12,7 +12,7 @@ import qreport.elements.Table;
  * @author martin
  *
  */
-public class ExcelExporter{
+public class ExcelExporter implements IExporter{
 
     Table exportedTable;
     String name;
@@ -22,10 +22,15 @@ public class ExcelExporter{
 	this.name = name;	
     }
     
-    /**
-     * This class would generate the file 
-     */
-    public void generateString(){
+    @Override
+    public void writeFile() {
+	// TODO Auto-generated method stub
+	
+    }
+
+    @Override
+    public void generateFile() {
+	// TODO Auto-generated method stub
 	
     }
 

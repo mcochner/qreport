@@ -6,8 +6,6 @@ package qreport;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class InputTable implements Table {
 	try {
 	    loadFromFile(filename);
 	} catch (Exception iOException) {
-	    // TODO Handle exception
+	    iOException.printStackTrace();
 	}
 
     }
@@ -67,14 +65,6 @@ public class InputTable implements Table {
 	return new QuarterTable(qRows, country, timescale);
     }
 
-    public static void main(String[] args) {
-	// test
-	InputTable t = new InputTable("data.csv");
-	t.sortByCountry();
-	t.sortByDate();
-	t.printTable();
-    }
-
     @Override
     public Iterator<Row> iterator() {
 	return new InputTableIterator();
@@ -85,6 +75,17 @@ public class InputTable implements Table {
 	return InputRow.getColumnNames();
     }
 
+
+    /* (non-Javadoc)
+     * @see qreport.elements.Table#getLastRow()
+     * 
+     * For InputTable is this method not important as I do not use it.
+     */
+    @Override
+    public ArrayList<String> getLastRow() {
+	return null;
+    }
+    
     // //////////////////////////////////////////////////////////////////////////
     //
     // private methods:
@@ -99,28 +100,6 @@ public class InputTable implements Table {
 	    listOfEntries.add(entry);
 	}
 	reader.close();
-    }
-
-    private class SORT_BY_COUNTRY implements Comparator<InputRow> {
-	@Override
-	public int compare(InputRow e1, InputRow e2) {
-	    return e1.getCountry().compareTo(e2.getCountry());
-	}
-    }
-
-    private class SORT_BY_DATE implements Comparator<InputRow> {
-	@Override
-	public int compare(InputRow e1, InputRow e2) {
-	    return e1.getTimescale().compareTo(e2.getTimescale());
-	}
-    }
-
-    private void sortByCountry() {
-	Collections.sort(listOfEntries, new SORT_BY_COUNTRY());
-    }
-
-    private void sortByDate() {
-	Collections.sort(listOfEntries, new SORT_BY_DATE());
     }
 
     private class InputTableIterator implements Iterator<Row> {
@@ -143,12 +122,6 @@ public class InputTable implements Table {
 	@Override
 	public void remove() {
 	}
-
     }
 
-    @Override
-    public ArrayList<String> getLastRow() {
-	// TODO Auto-generated method stub
-	return null;
-    }
 }
