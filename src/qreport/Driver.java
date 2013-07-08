@@ -65,15 +65,15 @@ public class Driver {
 	// ( Uncoment the printTable() to see the result )
 
 	
-	// quarterTable.printTable();
+	quarterTable.printTable();
 	
 	quarterTable.sortByVendor(); 
 	
-	//quarterTable.printTable(); 
+	quarterTable.printTable(); 
 	
 	quarterTable.sortByShare();
 
-	//quarterTable.printTable();
+	quarterTable.printTable();
 	
 	// ////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ public class Driver {
 	//      expo2.setType("CSV");
 	//      expo2.generate();
 	//
-	///
+	//
 	
     }
 

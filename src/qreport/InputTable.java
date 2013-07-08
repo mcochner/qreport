@@ -14,8 +14,10 @@ import qreport.elements.*;
 import au.com.bytecode.opencsv.CSVReader;
 
 /**
- * @author Martin Cochner
+ * This class imlements initial loading of the CSV data to a table and creating
+ * a report for a particular country and quarter.
  * 
+ * @author Martin Cochner
  */
 public class InputTable implements Table {
     private List<InputRow> listOfEntries;
@@ -23,7 +25,13 @@ public class InputTable implements Table {
     // //////////////////////////////////////////////////////////////////////////
     //
     // public methods:
-    
+
+    /**
+     * Constructor of the class from the CSV file
+     * 
+     * @param filename
+     *            neme of the input CSV file
+     */
     public InputTable(String filename) {
 	listOfEntries = new ArrayList<InputRow>();
 	try {
@@ -34,16 +42,18 @@ public class InputTable implements Table {
 
     }
 
+    /**
+     * Constructor of the class from the Collection of InputRows. Usefull for
+     * direct creating the table.
+     * 
+     * @param arrayOfEntries
+     */
     public InputTable(InputRow arrayOfEntries[]) {
 	for (InputRow e : arrayOfEntries) {
 	    listOfEntries.add(e);
 	}
     }
-
-    public Iterator<InputRow> createIterator() {
-	return listOfEntries.iterator();
-    }
-
+    
     public void printTable() {
 	for (Row e : listOfEntries) {
 	    e.printRow();
@@ -75,8 +85,9 @@ public class InputTable implements Table {
 	return InputRow.getColumnNames();
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see qreport.elements.Table#getLastRow()
      * 
      * For InputTable is this method not important as I do not use it.
@@ -85,7 +96,7 @@ public class InputTable implements Table {
     public ArrayList<String> getLastRow() {
 	return null;
     }
-    
+
     // //////////////////////////////////////////////////////////////////////////
     //
     // private methods:
@@ -102,6 +113,10 @@ public class InputTable implements Table {
 	reader.close();
     }
 
+    /**
+     * @author martin
+     *
+     */
     private class InputTableIterator implements Iterator<Row> {
 
 	private int i = 0;
@@ -123,5 +138,4 @@ public class InputTable implements Table {
 	public void remove() {
 	}
     }
-
 }

@@ -11,13 +11,12 @@ public class CSVExporter implements IExporter {
     @Override
     public void writeFile() {
 	// TODO Auto-generated method stub
-	
     }
 
     @Override
     public void generateFile() {
 	// TODO Auto-generated method stub
-	
+
     }
 
 }

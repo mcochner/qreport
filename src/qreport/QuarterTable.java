@@ -14,8 +14,8 @@ import qreport.elements.Table;
 import qreport.elements.Timescale;
 
 /**
- * @author martin
- * 
+ * This class imlements initial loading of the CSV data to a table 
+ * @author Martin Cochner  
  */
 public class QuarterTable implements Table {
     private int totalSoldUnits = 0;
@@ -107,25 +107,6 @@ public class QuarterTable implements Table {
     }
 
     @Override
-    public String toString() {
-	StringBuilder stringOfTable = new StringBuilder();
-
-	stringOfTable.append(String.format("%10s %8s   %s %n", "Vendor",
-		"Units", "Share"));
-
-	double hundredPercent = 0;
-	for (QuarterRow r : listOfEntries) {
-	    stringOfTable.append(r.toString());
-	    hundredPercent += r.getShare();
-	}
-
-	stringOfTable.append(String.format("%10s %8d   %3.1f %n", "Total",
-		getTotalSoldUnits(), hundredPercent));
-
-	return stringOfTable.toString();
-    }
-
-    @Override
     public void printTable() {
 	System.out.format("%18s %8s   %s %n", "Vendor", "Units", "Share");
 	double hundredPercent = 0;
@@ -144,6 +125,36 @@ public class QuarterTable implements Table {
 	return QuarterRow.getColumnNames();
     }
 
+    @Override
+    public ArrayList<String> getLastRow() {
+	ArrayList<String> output = new ArrayList<String>(); 
+
+	output.add("Total");
+	output.add(Integer.toString(getTotalSoldUnits()));
+	output.add("100.0");	
+	return output;
+    }
+    
+    
+    @Override
+    public String toString() {
+	StringBuilder stringOfTable = new StringBuilder();
+
+	stringOfTable.append(String.format("%10s %8s   %s %n", "Vendor",
+		"Units", "Share"));
+
+	double hundredPercent = 0;
+	for (QuarterRow r : listOfEntries) {
+	    stringOfTable.append(r.toString());
+	    hundredPercent += r.getShare();
+	}
+
+	stringOfTable.append(String.format("%10s %8d   %3.1f %n", "Total",
+		getTotalSoldUnits(), hundredPercent));
+
+	return stringOfTable.toString();
+    }
+    
     // //////////////////////////////////////////////////////////////////////////
     //
     // private methods:
@@ -219,18 +230,4 @@ public class QuarterTable implements Table {
     private void setTotalSoldUnits(int totalSoldUnits) {
 	this.totalSoldUnits = totalSoldUnits;
     }
-
-    // //////////////////////////////////////////////////////////////////////
-
-    public ArrayList<String> getLastRow() {
-	ArrayList<String> output = new ArrayList<String>(); 
-
-	output.add("Total");
-	output.add(Integer.toString(getTotalSoldUnits()));
-	output.add("100.0");	
-	return output;
-    }
-
-    // ////////////////////////////////////////////////////////////////////
-
 }

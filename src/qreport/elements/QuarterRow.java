@@ -53,9 +53,8 @@ public class QuarterRow implements Row {
 	return rowAsStrings;
     }
     
-    // lepsie by bolo @Override, ale java nepodporuje 
-    // static+abstract(interface)
-    
+    // dobre by bolo dat ho do Row a annotovat @Override, ale java nepodporuje 
+    // static+abstract(interface) 
     public static ArrayList<String> getColumnNames() {
 	ArrayList<String> columnNames = new ArrayList<String>();
 	columnNames.add("Vendor");
