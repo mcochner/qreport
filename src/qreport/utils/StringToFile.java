@@ -21,9 +21,7 @@ public class StringToFile {
 	    e.printStackTrace();
 	} catch (IOException e) {
 	    e.printStackTrace();
-	}
-	
-	
+	}	
     }
     
 }

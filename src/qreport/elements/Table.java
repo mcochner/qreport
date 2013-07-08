@@ -22,7 +22,7 @@ public interface Table extends Iterable<Row> {
     public ArrayList<String> getColumnNames();
     
     /** Generate some special last Row on any table.
-     * @return
+     * @return Place for the last row that can be used during exporting.
      */
     public ArrayList<String> getLastRow();
 }

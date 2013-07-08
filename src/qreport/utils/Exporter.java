@@ -4,7 +4,7 @@ import qreport.QuarterTable;
 import qreport.elements.Table;
 
 /**
- * Exporter class can create  
+ * Exporter class call different particular Exporters, e.g. HTMLExporter, CSVExporter  
  * @author martin
  *
  */
