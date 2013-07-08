@@ -22,6 +22,10 @@ import au.com.bytecode.opencsv.CSVReader;
 public class InputTable implements Table {
     private List<InputRow> listOfEntries;
 
+    // //////////////////////////////////////////////////////////////////////////
+    //
+    // public methods:
+    
     public InputTable(String filename) {
 	listOfEntries = new ArrayList<InputRow>();
 	try {
@@ -42,44 +46,10 @@ public class InputTable implements Table {
 	return listOfEntries.iterator();
     }
 
-    private void loadFromFile(String filename) throws IOException {
-	CSVReader reader = new CSVReader(new FileReader(filename), ',', '\t', 1);
-	String nextLine[];
-	while ((nextLine = reader.readNext()) != null) {
-	    // nextLine[] is an array of values from the line
-	    InputRow entry = new InputRow(nextLine[0], nextLine[1],
-		    nextLine[2], nextLine[3]);
-	    listOfEntries.add(entry);
-	}
-	reader.close();
-    }
-
-    private class SORT_BY_COUNTRY implements Comparator<InputRow> {
-	@Override
-	public int compare(InputRow e1, InputRow e2) {
-	    return e1.getCountry().compareTo(e2.getCountry());
-	}
-    }
-
     public void printTable() {
 	for (Row e : listOfEntries) {
 	    e.printRow();
 	}
-    }
-
-    private class SORT_BY_DATE implements Comparator<InputRow> {
-	@Override
-	public int compare(InputRow e1, InputRow e2) {
-	    return e1.getTimescale().compareTo(e2.getTimescale());
-	}
-    }
-
-    private void sortByCountry() {
-	Collections.sort(listOfEntries, new SORT_BY_COUNTRY());
-    }
-
-    private void sortByDate() {
-	Collections.sort(listOfEntries, new SORT_BY_DATE());
     }
 
     public QuarterTable transformTable(String country, String timescale) {
@@ -105,6 +75,54 @@ public class InputTable implements Table {
 	t.printTable();
     }
 
+    @Override
+    public Iterator<Row> iterator() {
+	return new InputTableIterator();
+    }
+
+    @Override
+    public ArrayList<String> getColumnNames() {
+	return InputRow.getColumnNames();
+    }
+
+    // //////////////////////////////////////////////////////////////////////////
+    //
+    // private methods:
+
+    private void loadFromFile(String filename) throws IOException {
+	CSVReader reader = new CSVReader(new FileReader(filename), ',', '\t', 1);
+	String nextLine[];
+	while ((nextLine = reader.readNext()) != null) {
+	    // nextLine[] is an array of values from the line
+	    InputRow entry = new InputRow(nextLine[0], nextLine[1],
+		    nextLine[2], nextLine[3]);
+	    listOfEntries.add(entry);
+	}
+	reader.close();
+    }
+
+    private class SORT_BY_COUNTRY implements Comparator<InputRow> {
+	@Override
+	public int compare(InputRow e1, InputRow e2) {
+	    return e1.getCountry().compareTo(e2.getCountry());
+	}
+    }
+
+    private class SORT_BY_DATE implements Comparator<InputRow> {
+	@Override
+	public int compare(InputRow e1, InputRow e2) {
+	    return e1.getTimescale().compareTo(e2.getTimescale());
+	}
+    }
+
+    private void sortByCountry() {
+	Collections.sort(listOfEntries, new SORT_BY_COUNTRY());
+    }
+
+    private void sortByDate() {
+	Collections.sort(listOfEntries, new SORT_BY_DATE());
+    }
+
     private class InputTableIterator implements Iterator<Row> {
 
 	private int i = 0;
@@ -119,8 +137,7 @@ public class InputTable implements Table {
 
 	@Override
 	public Row next() {
-	    i++;
-	    return (Row) listOfEntries.get(i);
+	    return (Row) listOfEntries.get(i++);
 	}
 
 	@Override
@@ -130,12 +147,7 @@ public class InputTable implements Table {
     }
 
     @Override
-    public Iterator<Row> iterator() {
-	return new InputTableIterator();
-    }
-
-    @Override
-    public ArrayList<String> getColumnNames() {
+    public ArrayList<String> getLastRow() {
 	// TODO Auto-generated method stub
 	return null;
     }

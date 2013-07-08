@@ -2,27 +2,33 @@ package qreport;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.Iterator;
 import org.junit.Test;
+
+import qreport.elements.Row;
 
 public class InputTableTest
 {
     private InputTable inputTable;
 
-    @Before
-    public void setUp() throws Exception
+    public void setup()
     {
-        inputTable = new InputTable("testdata.csv");
-        inputTable.printTable();
+	InputTable inputTable = new InputTable("data.csv");
+	//inputTable.printTable();
     }
 
 
     @Test
     public void testInputTable()
     {
+	setup();
+	Iterator<Row> itr = inputTable.iterator();
+	while (itr.hasNext())
+	{
+	    
+	    Row row = itr.next();
+	    row.printRow();
+	}
         fail("Not yet implemented");
     }
 

@@ -46,20 +46,21 @@ public class QuarterRow implements Row {
     @Override
     public ArrayList<String> getRowAsStrings() {
 
-	ArrayList<String> rowAsStrings = new ArrayList<String>(2);
+	ArrayList<String> rowAsStrings = new ArrayList<String>(3);
 	rowAsStrings.add(this.getVendor());
 	rowAsStrings.add((Integer.toString(this.getUnits())));
+	rowAsStrings.add((Double.toString(this.getShare())));
 	return rowAsStrings;
     }
     
-    // lepsie by bolo @Override, ale java z nejakych dovodov nepodporuje 
+    // lepsie by bolo @Override, ale java nepodporuje 
     // static+abstract(interface)
     
     public static ArrayList<String> getColumnNames() {
 	ArrayList<String> columnNames = new ArrayList<String>();
-	columnNames.add("vendor");
-	columnNames.add("units");
-	columnNames.add("share");
+	columnNames.add("Vendor");
+	columnNames.add("Units");
+	columnNames.add("Share");
 
 	return columnNames;
     }
