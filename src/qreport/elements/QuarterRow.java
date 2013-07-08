@@ -1,0 +1,66 @@
+/**
+ * 
+ */
+package qreport.elements;
+
+import java.util.ArrayList;
+
+/**
+ * @author martin
+ * 
+ */
+public class QuarterRow implements Row {
+    private String vendor;
+    private int units;
+    private double share;
+
+    public QuarterRow(String vendor, int units) {
+	this.vendor = vendor;
+	this.units = units;
+    }
+
+    public String toString() {
+	return String.format("%18s %8d   %3.1f %n", vendor, units, share);
+    }
+
+    public void printRow() {
+	System.out.print(this.toString());
+    }
+
+    public String getVendor() {
+	return vendor;
+    }
+
+    public int getUnits() {
+	return units;
+    }
+
+    public double getShare() {
+	return share;
+    }
+
+    public void setShare(double share) {
+	this.share = share;
+    }
+
+    @Override
+    public ArrayList<String> getRowAsStrings() {
+
+	ArrayList<String> rowAsStrings = new ArrayList<String>(2);
+	rowAsStrings.add(this.getVendor());
+	rowAsStrings.add((Integer.toString(this.getUnits())));
+	return rowAsStrings;
+    }
+    
+    // lepsie by bolo @Override, ale java z nejakych dovodov nepodporuje 
+    // static+abstract(interface)
+    
+    public static ArrayList<String> getColumnNames() {
+	ArrayList<String> columnNames = new ArrayList<String>();
+	columnNames.add("vendor");
+	columnNames.add("units");
+	columnNames.add("share");
+
+	return columnNames;
+    }
+}
