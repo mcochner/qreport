@@ -26,8 +26,7 @@ public class HTMLExporter implements IExporter {
     @Override
     public void writeFile(){
 	new StringToFile(output, filename);
-    }
-    
+    } 
     
     /**
      * This class generate a string that will later be saved to a file.

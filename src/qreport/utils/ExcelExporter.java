@@ -6,7 +6,7 @@ package qreport.utils;
 import qreport.elements.Table;
 
 /**
- * This class is a stud for exporting an Table to Excel. I would implement it simmiliary to HTMLExporter.
+ * This class is a stud for exporting a Table to Excel. I would implement it simmiliary to HTMLExporter.
  * Newer Excel uses natively XML format, therefore some library could be used.  
  * 
  * @author martin
@@ -24,8 +24,7 @@ public class ExcelExporter implements IExporter{
     
     @Override
     public void writeFile() {
-	// TODO Auto-generated method stub
-	
+	// TODO Auto-generated method stub	
     }
 
     @Override

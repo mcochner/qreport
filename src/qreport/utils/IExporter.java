@@ -1,14 +1,18 @@
 package qreport.utils;
 
+/** Interface for Exporter classes
+ * @author martin
+ *
+ */
 public interface IExporter {
     
     /**
-     * this method write string to file by calling helper class StringToFile
+     * This method writes string to file by calling helper class StringToFile
      */
     public void writeFile();
    
     /**
-     * this method write generate file.
+     * This method generates file.
      */
     public void generateFile();
     

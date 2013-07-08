@@ -6,9 +6,19 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
+/**
+ * Helper class that writes any StringBuilder to a file.
+ * 
+ */
 public class StringToFile {
 
-    public StringToFile(StringBuilder output, String filename){
+    /**
+     * Constructor creates a file, writes a StringBuilder and close the file
+     * 
+     * @param output
+     * @param filename
+     */
+    public StringToFile(StringBuilder output, String filename) {
 	try {
 	    FileOutputStream fos = new FileOutputStream(filename);
 	    OutputStreamWriter out = new OutputStreamWriter(fos, "UTF8");
@@ -21,7 +31,7 @@ public class StringToFile {
 	    e.printStackTrace();
 	} catch (IOException e) {
 	    e.printStackTrace();
-	}	
+	}
     }
-    
+
 }
