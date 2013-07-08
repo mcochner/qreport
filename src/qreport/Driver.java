@@ -1,6 +1,3 @@
-/**
- * 
- */
 package qreport;
 
 import qreport.utils.Exporter;

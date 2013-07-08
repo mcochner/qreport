@@ -1,10 +1,10 @@
-/**
- *  Simple datastructure that implements Timescale columns  
- */
 package qreport.elements;
 
 /**
+ * Implements timescale, allows comparission of two timescales.
+ * 
  * @author Martin Cochner
+ * 
  */
 public class Timescale implements Comparable<Timescale> {
 

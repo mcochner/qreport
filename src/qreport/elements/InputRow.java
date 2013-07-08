@@ -6,7 +6,7 @@ package qreport.elements;
 import java.util.ArrayList;
 
 /**
- * @author martin
+ * @author Martin Cochner  
  *
  */
 public class InputRow implements Row
