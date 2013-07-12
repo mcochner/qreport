@@ -114,8 +114,10 @@ public class InputTable implements Table {
     }
 
     /**
-     * @author martin
-     *
+     * Iterator 
+     * 
+     * @author Martin Cochner
+     * 
      */
     private class InputTableIterator implements Iterator<Row> {
 
